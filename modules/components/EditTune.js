@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { updateTuneById } from '../actions/tunes';
 
@@ -28,6 +28,10 @@ const EditTune = React.createClass({
     return this.props.user.tunes.filter(tune => tune.id == id)[0];
   },
 
+  goBack() {
+    browserHistory.push(`/tune/${this.state.id}`);
+  },
+
   handleChange(payload) {
     this.setState({ ...this.state, ...payload });
   },
@@ -36,6 +40,7 @@ const EditTune = React.createClass({
     e.preventDefault();
 
     this.props.dispatch(updateTuneById(this.state.id, this.state));
+    this.goBack();
   },
 
   render() {
@@ -68,6 +73,7 @@ const EditTune = React.createClass({
 	  />
 
 	  <button type="submit">Save</button>
+	  <button type="button" onClick={this.goBack}>Cancel</button>
         </form>
       </article>
     );

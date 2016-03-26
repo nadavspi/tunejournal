@@ -4,12 +4,15 @@
       "id": "me@nadav.name",
       "tunes": [
         {
-          "id": "love-walked-in",
+          "id": 1,
           "isUserTune": true,
           "name": "Love Walked In",
           "composer": "George & Ira Gershwin",
           "year": "1930",
           "datePracticed": "2016-03-26T00:25:57.429Z",
+          "lists": [
+            "my-tunes"
+          ],
           "notes": [
             {
               "id": 1,
@@ -19,20 +22,40 @@
           ]
         },
         {
-          "id": "mellow-tone",
+          "id": 2,
           "isUserTune": false,
           "name": "In A Mellow Tune",
+          "lists": [
+            "my-tunes"
+          ],
           "composer": "Duke Ellington"
+        },
+        {
+          "id": 3,
+          "name": "You Go To My Head",
+          "lists": [
+            "tunes-to-learn"
+          ]
+        },
+        {
+          "id": 4,
+          "name": "It's Alright With Me",
+          "lists": [
+            "tunes-to-learn"
+          ],
+          "composer": "Cole Porter"
+        }
+      ],
+      "lists": [
+        {
+          "id": "my-tunes",
+          "name": "My Tunes"
+        },
+        {
+          "id": "tunes-to-learn",
+          "name": "Tunes To Learn"
         }
       ]
-    }
-  ],
-  "tunes": [
-    {
-      "id": 1,
-      "name": "Love Walked In",
-      "composer": "George & Ira Gershwin",
-      "year": "1930"
     }
   ]
 }

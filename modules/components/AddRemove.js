@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateTuneById } from '../actions/tunes';
+import Select from 'react-select';
 
 const AddRemove = React.createClass({
   propTypes: {
+    lists: React.PropTypes.array.isRequired,
     tune: React.PropTypes.object.isRequired,
   },
 
@@ -15,18 +17,30 @@ const AddRemove = React.createClass({
     }))
   },
 
+  handleChange(newValue, selectedOptions) {
+    console.log(newValue, selectedOptions);
+  },
+
   render() {
-    const { tune } = this.props;
+    const { lists, tune } = this.props;
+    const options = lists.map(list => ({
+      label: list.name,
+      value: list.id,
+    }));
 
     return (
-      <button
-	onClick={this.handleClick}
-	type="button"
-      >
-	{tune.isUserTune ? 'Remove' : 'Add'}
-      </button>
+      <Select
+	onChange={this.handleChange}
+	multi={true}
+	value={tune.lists.join(',')}
+        options={options}
+      />
     );
   }
 });
 
-export default connect()(AddRemove);
+const mapStateToProps = state => ({
+  lists: state.user.lists,
+});
+
+export default connect(mapStateToProps)(AddRemove);

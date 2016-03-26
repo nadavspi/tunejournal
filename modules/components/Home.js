@@ -12,9 +12,8 @@ export default React.createClass({
     const userTunes = tunes.filter(tune => tune.isUserTune);
     return (
       <div>
-        <Title render={prev => `${prev} | My Tunes`}/>
-	<h2>My Tunes ({userTunes.length})</h2>
-	<TuneTable tunes={userTunes} />
+        <Title render={prev => `${prev} | Dashboard`}/>
+	<h2>Dashboard</h2>
       </div>
     )
   }

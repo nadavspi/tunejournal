@@ -1,28 +1,37 @@
 import React from 'react';
 import { IndexLink, Link } from 'react-router';
 import { connect } from 'react-redux';
+import { link } from './styles.css';
 
 const Nav = React.createClass({
   propTypes: {
     tunesCount: React.PropTypes.number.isRequired,
-    userTunesCount: React.PropTypes.number.isRequired,
   },
 
   render() {
-    const { userTunesCount, tunesCount } = this.props;
+    const { lists, tunesCount } = this.props;
 
     return (
       <nav>
-	<IndexLink to="/">My Tunes ({userTunesCount})</IndexLink>{' '}
-	<Link to="/tunes">All Tunes ({tunesCount})</Link>
+        <IndexLink to="/" className={link}>Dashboard</IndexLink>{' '}
+        {lists.map(list => (
+	   <Link
+	     key={list.id}
+	     to={`/list/${list.id}`}
+	     className={link}
+	   >
+	     {list.name}
+	   </Link>
+        ))}
+        <Link to="/tunes" className={link}>All Tunes</Link>
       </nav>
     );
   }
 });
 
 const mapStateToProps = state => ({
+  lists: state.user.lists,
   tunesCount: state.user.tunes.length,
-  userTunesCount: state.user.tunes.filter(tune => tune.isUserTune).length,
 });
 
 export default connect(mapStateToProps)(Nav);

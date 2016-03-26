@@ -9,6 +9,7 @@ import NoMatch from './components/NoMatch'
 import AllTunes from './components/AllTunes'
 import Tune from './components/Tune'
 import EditTune from './components/EditTune'
+import List from './components/List'
 
 export default (
   <Route>
@@ -17,6 +18,7 @@ export default (
       <Route path="tunes" component={AllTunes}/>
       <Route path="tune/:id" component={Tune} />
       <Route path="tune/:id/edit" component={EditTune} />
+      <Route path="list/:id" component={List} />
     </Route>
     <ServerRoute path="/api">
       <ServerRoute path=":hello" get={hello}/>
