@@ -6,13 +6,17 @@ import hello from './api/hello'
 import App from './components/App'
 import Home from './components/Home'
 import NoMatch from './components/NoMatch'
-import Dragon from './components/Dragon'
+import AllTunes from './components/AllTunes'
+import Tune from './components/Tune'
+import EditTune from './components/EditTune'
 
 export default (
   <Route>
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
-      <Route path="dragon" component={Dragon}/>
+      <Route path="tunes" component={AllTunes}/>
+      <Route path="tune/:id" component={Tune} />
+      <Route path="tune/:id/edit" component={EditTune} />
     </Route>
     <ServerRoute path="/api">
       <ServerRoute path=":hello" get={hello}/>

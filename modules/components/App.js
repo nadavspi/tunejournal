@@ -1,20 +1,33 @@
-import React from 'react'
+import React, { cloneElement } from 'react'
 import { IndexLink, Link } from 'react-router'
 import Title from 'react-title-component'
 import { connect } from 'react-redux';
+import * as userActions from '../actions/user';
+import Login from './Login';
+import Nav from './Nav';
 
 const App = React.createClass({
+  propTypes: {
+    user: React.PropTypes.object.isRequired,
+  },
+
+  login(payload) {
+    this.props.dispatch(userActions.login(payload));
+  },
+
   render() {
+    const { user } = this.props;
+
     return (
       <div>
         <Title render="TuneBook"/>
-        <h1>woah!</h1>
-        <ul>
-          <li><IndexLink to="/">Home</IndexLink></li>
-          <li><Link to="/dragon">A DRAGON!</Link></li>
-          <li><Link to="/not-dragon">An old URL to a DRAGON!</Link></li>
-        </ul>
-        {this.props.children}
+	{this.props.user.id ? (
+	  <Nav />
+	) : (
+	   <Login handleLogin={this.login} />
+	)}
+
+        {cloneElement(this.props.children, { user })}
       </div>
     )
   }

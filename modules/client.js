@@ -4,8 +4,11 @@ import { Router, browserHistory } from 'react-router'
 import routes from '../modules/routes'
 import configureStore from './configureStore';
 import { Provider } from 'react-redux';
+require('babel-polyfill');
 
-const store = configureStore();
+const { INITIAL_STATE: initialState } = window;
+
+const store = configureStore(initialState);
 
 render(
   <Provider store={store}>
