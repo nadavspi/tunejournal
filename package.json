@@ -11,8 +11,9 @@
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run react-project:start:prod || npm run react-project:start:dev",
     "test": "karma start",
-    "react-project:start:dev": "eslint modules && react-project start",
-    "react-project:start:prod": "rm -rf .build && react-project build && node .build/server.js"
+    "react-project:start:dev": "react-project start",
+    "react-project:start:prod": "rm -rf .build && react-project build && node .build/server.js",
+    "api": "json-server -p 8084 --watch modules/api/db.json"
   },
   "author": "",
   "license": "ISC",
@@ -54,12 +55,18 @@
     "react": "0.14.7",
     "react-dom": "0.14.7",
     "react-project": "0.0.30",
+    "react-redux": "4.4.1",
     "react-router": "2.0.0",
     "react-title-component": "1.0.1",
+    "redux": "3.3.1",
+    "redux-thunk": "2.0.1",
     "source-map-support": "0.4.0",
     "style-loader": "0.13.0",
     "url-loader": "0.5.7",
     "webpack": "1.12.14",
     "webpack-dev-server": "1.14.1"
+  },
+  "devDependencies": {
+    "json-server": "0.8.9"
   }
 }

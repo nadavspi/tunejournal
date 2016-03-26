@@ -3,6 +3,10 @@ import { createServer } from 'react-project/server'
 import { RouterContext } from 'react-router'
 import Document from '../modules/components/Document'
 import routes from '../modules/routes'
+import configureStore from './configureStore';
+import { Provider } from 'react-redux';
+
+const store = configureStore();
 
 function getApp(req, res, requestCallback) {
   // here is your chance to do things like get an auth token and generate
@@ -14,11 +18,14 @@ function getApp(req, res, requestCallback) {
       // your top-level components
       renderCallback(null, {
         renderDocument: (props) => <Document {...props}/>,
-        renderApp: (props) => <RouterContext {...props}/>
+        renderApp: (props) => (
+	  <Provider store={store}>
+            <RouterContext {...props}/>
+	  </Provider>
+        )
       })
     }
   })
 }
 
 createServer(getApp).start()
-

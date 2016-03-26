@@ -1,13 +1,14 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import Title from 'react-title-component'
+import { connect } from 'react-redux';
 
-export default React.createClass({
+const App = React.createClass({
   render() {
     return (
       <div>
-        <Title render="Awesome App"/>
-        <h1>Welcome to your app.</h1>
+        <Title render="TuneBook"/>
+        <h1>woah!</h1>
         <ul>
           <li><IndexLink to="/">Home</IndexLink></li>
           <li><Link to="/dragon">A DRAGON!</Link></li>
@@ -17,5 +18,6 @@ export default React.createClass({
       </div>
     )
   }
-})
+});
 
+export default connect(state => state)(App);
