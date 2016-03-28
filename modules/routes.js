@@ -10,12 +10,14 @@ import AllTunes from './components/AllTunes'
 import Tune from './components/Tune'
 import EditTune from './components/EditTune'
 import List from './components/List'
+import RandomTune from './components/RandomTune';
 
 export default (
   <Route>
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
       <Route path="tunes" component={AllTunes}/>
+      <Route path="tune/random" component={RandomTune} />
       <Route path="tune/:id" component={Tune} />
       <Route path="tune/:id/edit" component={EditTune} />
       <Route path="list/:id" component={List} />

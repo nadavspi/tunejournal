@@ -32,6 +32,7 @@ const Nav = React.createClass({
         <Link to="/tunes" className={link}>All Tunes</Link>
 	<SelectTune
 	  tunes={tunes}
+	  includeRandom={true}
 	  onChange={this.handleChange}
 	  placeholder="Go to tune"
 	  className="override"

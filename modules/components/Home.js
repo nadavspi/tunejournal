@@ -10,6 +10,7 @@ export default React.createClass({
   render() {
     const { tunes } = this.props.user;
     const userTunes = tunes.filter(tune => tune.isUserTune);
+
     return (
       <div>
         <Title render={prev => `${prev} | Dashboard`}/>

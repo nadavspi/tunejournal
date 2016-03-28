@@ -1,6 +1,7 @@
 import * as ActionTypes from './ActionTypes';
 import moment from 'moment';
 import { api } from './constants';
+import { browserHistory } from 'react-router';
 
 export const updateTuneById = (id, payload) => (dispatch, getState) => {
   if (!id || !payload) {
@@ -32,3 +33,19 @@ export const addPractice = (tune, date = moment()) => (dispatch) => {
     practiceDates: [...tune.practiceDates, date.toISOString()],
   }));
 };
+
+export const randomTune = () => (dispatch, getState) => {
+  const { tunes } = getState().user;
+
+  // Need to be smarter about this:
+  // - not the current one
+  // - maybe sort by least practiced
+  const random = tunes[Math.floor(Math.random() * tunes.length)];
+
+  browserHistory.replace(`/tune/${random.id}`);
+
+  dispatch({
+    type: ActionTypes.TUNE_RANDOM,
+    payload: random.id,
+  })
+}
