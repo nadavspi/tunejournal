@@ -5,11 +5,12 @@
       "tunes": [
         {
           "id": 1,
-          "isUserTune": true,
           "name": "Love Walked In",
           "composer": "George & Ira Gershwin",
           "year": "1930",
-          "datePracticed": "2016-03-26T00:25:57.429Z",
+          "practiceDates": [
+            "2016-03-26T00:25:57.429Z"
+          ],
           "lists": [
             "my-tunes"
           ],
@@ -23,7 +24,6 @@
         },
         {
           "id": 2,
-          "isUserTune": false,
           "name": "In A Mellow Tune",
           "lists": [
             "my-tunes"

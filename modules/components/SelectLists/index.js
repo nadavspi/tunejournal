@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateTuneById } from '../actions/tunes';
+import { updateTuneById } from '../../actions/tunes';
 import Select from 'react-select';
+import styles from './styles.global.css';
 
 const AddRemove = React.createClass({
   propTypes: {
@@ -9,31 +10,26 @@ const AddRemove = React.createClass({
     tune: React.PropTypes.object.isRequired,
   },
 
-  handleClick() {
+  handleChange(options) {
     const { dispatch, tune } = this.props;
 
     dispatch(updateTuneById(tune.id, {
-      isUserTune: !tune.isUserTune,
-    }))
-  },
-
-  handleChange(newValue, selectedOptions) {
-    console.log(newValue, selectedOptions);
+      lists: options.map(option => option.id),
+    }));
   },
 
   render() {
     const { lists, tune } = this.props;
-    const options = lists.map(list => ({
-      label: list.name,
-      value: list.id,
-    }));
 
     return (
       <Select
-	onChange={this.handleChange}
+	clearable={false}
+	labelKey="name"
 	multi={true}
+	onChange={this.handleChange}
 	value={tune.lists.join(',')}
-        options={options}
+	valueKey="id"
+        options={lists}
       />
     );
   }

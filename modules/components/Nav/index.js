@@ -1,18 +1,24 @@
 import React from 'react';
-import { IndexLink, Link } from 'react-router';
+import { browserHistory, IndexLink, Link } from 'react-router';
 import { connect } from 'react-redux';
-import { link } from './styles.css';
+import { select, nav, link } from './styles.css';
+import SelectTune from '../SelectTune';
 
 const Nav = React.createClass({
   propTypes: {
-    tunesCount: React.PropTypes.number.isRequired,
+    lists: React.PropTypes.array.isRequired,
+    tunes: React.PropTypes.array.isRequired,
+  },
+
+  handleChange({ id }) {
+    browserHistory.push(`/tune/${id}`);
   },
 
   render() {
-    const { lists, tunesCount } = this.props;
+    const { lists, tunes } = this.props;
 
     return (
-      <nav>
+      <nav className={nav}>
         <IndexLink to="/" className={link}>Dashboard</IndexLink>{' '}
         {lists.map(list => (
 	   <Link
@@ -24,6 +30,12 @@ const Nav = React.createClass({
 	   </Link>
         ))}
         <Link to="/tunes" className={link}>All Tunes</Link>
+	<SelectTune
+	  tunes={tunes}
+	  onChange={this.handleChange}
+	  placeholder="Go to tune"
+	  className="override"
+	/>
       </nav>
     );
   }
@@ -31,7 +43,7 @@ const Nav = React.createClass({
 
 const mapStateToProps = state => ({
   lists: state.user.lists,
-  tunesCount: state.user.tunes.length,
+  tunes: state.user.tunes,
 });
 
 export default connect(mapStateToProps)(Nav);

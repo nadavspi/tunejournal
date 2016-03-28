@@ -1,7 +1,7 @@
 import React from 'react';
-import relativeDate from 'relative-date';
-import AddRemove from './AddRemove';
+import SelectLists from './SelectLists';
 import { Link } from 'react-router';
+import { latestDate } from '../utils';
 
 const Row = ({ tune }) => (
   <tr>
@@ -17,10 +17,10 @@ const Row = ({ tune }) => (
       {tune.year}
     </td>
     <td>
-      {relativeDate(new Date(tune.datePracticed))}
+      {latestDate(tune.practiceDates)}
     </td>
     <td>
-      <AddRemove tune={tune} />
+      <SelectLists tune={tune} />
     </td>
   </tr>
 );
@@ -33,7 +33,7 @@ const TuneTable = ({ tunes }) => (
         <th>Composer</th>
         <th>Year</th>
         <th>Last Practiced</th>
-        <th>Add / Remove</th>
+        <th>Lists</th>
       </tr>
     </thead>
     <tbody>
