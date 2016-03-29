@@ -19,6 +19,8 @@ const Note = ({ note, onChange }) => (
 export default React.createClass({
   propTypes: {
     notes: React.PropTypes.array,
+    tuneId: React.PropTypes.string.isRequired,
+    updateNote: React.PropTypes.func.isRequired,
   },
 
   getDefaultProps() {
@@ -28,7 +30,13 @@ export default React.createClass({
   },
 
   handleChange(id, content) {
-    console.log(id, content);
+    const { tuneId } = this.props;
+
+    this.props.updateNote({
+      content,
+      id,
+      tuneId,
+    });
   },
 
   render() {

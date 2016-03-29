@@ -1,9 +1,11 @@
-import React from 'react';
+import * as NoteActions from '../../actions/note';
 import Notes from './Notes'
+import React from 'react';
 import SelectLists from '../SelectLists';
 import relativeDate from 'relative-date';
 import { Link } from 'react-router';
 import { addPractice } from '../../actions/tunes';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { latestDate } from '../../utils';
 
@@ -22,6 +24,8 @@ const Tune = React.createClass({
     const { id: tuneId } = this.props.routeParams;
     const tune = this.props.user.tunes.filter(tune => tune.id == tuneId)[0];
     const date = latestDate(tune.practiceDates);
+    const { dispatch } = this.props;
+    const noteActionCreators = bindActionCreators(NoteActions, dispatch);
 
     return (
       <article>
@@ -41,7 +45,11 @@ const Tune = React.createClass({
 
         <SelectLists tune={tune} />
 
-        <Notes notes={tune.notes} />
+        <Notes
+	  notes={tune.notes}
+	  tuneId={tuneId}
+	  {...noteActionCreators}
+	/>
       </article>
     );
   }

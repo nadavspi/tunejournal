@@ -4,7 +4,7 @@
       "id": "me@nadav.name",
       "tunes": [
         {
-          "id": 1,
+          "id": "1",
           "name": "Love Walked In",
           "composer": "George & Ira Gershwin",
           "year": "1930",
@@ -16,14 +16,15 @@
           ],
           "notes": [
             {
+              "content": "Worked on head at 60 bpm.",
+              "createdDate": "2016-03-26T00:25:57.429Z",
               "id": 1,
-              "date": "2016-03-26T00:25:57.429Z",
-              "content": "Worked on head at 60 bpm."
+              "modifiedDate": "2016-03-26T00:25:57.429Z"
             }
           ]
         },
         {
-          "id": 2,
+          "id": "2",
           "name": "In A Mellow Tune",
           "lists": [
             "my-tunes"
@@ -31,14 +32,14 @@
           "composer": "Duke Ellington"
         },
         {
-          "id": 3,
+          "id": "3",
           "name": "You Go To My Head",
           "lists": [
             "tunes-to-learn"
           ]
         },
         {
-          "id": 4,
+          "id": "4",
           "name": "It's Alright With Me",
           "lists": [
             "tunes-to-learn"
