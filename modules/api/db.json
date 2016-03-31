@@ -20,6 +20,12 @@
               "createdDate": "2016-03-26T00:25:57.429Z",
               "id": 1,
               "modifiedDate": "2016-03-26T00:25:57.429Z"
+            },
+            {
+              "content": "Worked on head at 80 bpm.",
+              "createdDate": "2016-03-27T00:25:57.429Z",
+              "id": 2,
+              "modifiedDate": "2016-03-27T00:25:57.429Z"
             }
           ]
         },
@@ -29,11 +35,13 @@
           "lists": [
             "my-tunes"
           ],
+          "notes": [],
           "composer": "Duke Ellington"
         },
         {
           "id": "3",
           "name": "You Go To My Head",
+          "notes": [],
           "lists": [
             "tunes-to-learn"
           ]
@@ -41,6 +49,7 @@
         {
           "id": "4",
           "name": "It's Alright With Me",
+          "notes": [],
           "lists": [
             "tunes-to-learn"
           ],

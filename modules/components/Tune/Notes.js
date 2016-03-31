@@ -1,16 +1,24 @@
 import React from 'react';
+import { calendarDate } from '../../utils';
+import AddNote from './AddNote';
 
-const Note = ({ note, onChange }) => (
+const Note = ({ onDelete, note, onChange }) => (
   <li>
-    {note.date}
+    <h4>{calendarDate(note.createdDate)}</h4>
+    <button
+      type="button"
+      onClick={onDelete}
+    >
+      Delete
+    </button>
     <div>
       <label htmlFor={`note-${note.id}`}>Note</label>
       <textarea
-	cols="30"
-	id={`note-${note.id}`}
-	onChange={onChange}
-	rows="10"
-	value={note.content}
+        cols="30"
+        id={`note-${note.id}`}
+        onChange={onChange}
+        rows="10"
+        value={note.content}
       />
     </div>
   </li>
@@ -18,6 +26,7 @@ const Note = ({ note, onChange }) => (
 
 export default React.createClass({
   propTypes: {
+    deleteNote: React.PropTypes.func.isRequired,
     notes: React.PropTypes.array,
     tuneId: React.PropTypes.string.isRequired,
     updateNote: React.PropTypes.func.isRequired,
@@ -27,6 +36,12 @@ export default React.createClass({
     return {
       notes: [],
     };
+  },
+
+  componentDidUpdate(prevProps) {
+    if (this.props.notes.length != prevProps.notes.length) {
+      // let's focus on the first textarea somehow
+    }
   },
 
   handleChange(id, content) {
@@ -39,6 +54,15 @@ export default React.createClass({
     });
   },
 
+  handleDelete(id) {
+    const { tuneId } = this.props;
+
+    this.props.deleteNote({
+      tuneId,
+      id,
+    });
+  },
+
   render() {
     const { notes } = this.props;
 
@@ -47,12 +71,13 @@ export default React.createClass({
         <h3>Notes</h3>
         <ul>
           {notes.map(note => (
-	     <Note
-	       onChange={e => this.handleChange(note.id, e.target.value)}
-	       key={note.id}
-	       note={note}
-	     />
-	   ))}
+             <Note
+               onChange={e => this.handleChange(note.id, e.target.value)}
+               onDelete={this.handleDelete.bind(null, note.id)}
+               key={note.id}
+               note={note}
+             />
+           ))}
         </ul>
       </div>
     );

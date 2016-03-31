@@ -23,13 +23,14 @@ const AddRemove = React.createClass({
 
     return (
       <Select
-	clearable={false}
-	labelKey="name"
-	multi={true}
-	onChange={this.handleChange}
-	value={tune.lists.join(',')}
-	valueKey="id"
+        clearable={false}
+        labelKey="name"
+        multi={true}
+        onChange={this.handleChange}
+        value={tune.lists.join(',')}
+        valueKey="id"
         options={lists}
+        style={{ maxWidth: '300px' }}
       />
     );
   }

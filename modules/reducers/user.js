@@ -22,21 +22,56 @@ export default function user(state = {}, action) {
         }),
       };
 
-   //  case ActionTypes.NOTE_UPDATE:
-   //    return {
-   //      ...state,
-   //      tunes: {
-   //        ...state.tunes,
-   //        notes: state.tunes.notes.map(note => {
-   //          if (note.id === action.payload.id) {
-   //            return {
-   //              ...note,
-   //              ...action.payload,
-   //            }
-   //          }
-   //        }),
-   //      }
-   //    }
+    case ActionTypes.NOTE_ADD:
+      return {
+        ...state,
+        tunes: state.tunes.map(tune => {
+          if (tune.id === action.payload.tuneId) {
+            return {
+              ...tune,
+              notes: [
+                ...tune.notes,
+                action.payload
+              ],
+            };
+          }
+
+          return tune;
+        }),
+      };
+
+    case ActionTypes.NOTE_DELETE:
+      return {
+        ...state,
+        tunes: state.tunes.map(tune => {
+          if (tune.id === action.payload.tuneId) {
+            return {
+              ...tune,
+              notes: tune.notes.filter(note =>
+		note.id !== action.payload.id
+	      ),
+            };
+          }
+
+          return tune;
+        }),
+      };
+
+      //  case ActionTypes.NOTE_UPDATE:
+      //    return {
+      //      ...state,
+      //      tunes: {
+      //        ...state.tunes,
+      //        notes: state.tunes.notes.map(note => {
+      //          if (note.id === action.payload.id) {
+      //            return {
+      //              ...note,
+      //              ...action.payload,
+      //            }
+      //          }
+      //        }),
+      //      }
+      //    }
 
     default:
       return state;

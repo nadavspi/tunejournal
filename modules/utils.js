@@ -1,4 +1,3 @@
-import relativeDate from 'relative-date';
 import moment from 'moment';
 
 export const latestDate = (dates) => {
@@ -8,5 +7,9 @@ export const latestDate = (dates) => {
 
   const latest = dates.sort((a, b) => moment(a.date).isBefore(b.date) ? -1 : 1)[0];
 
-  return moment(latest).fromNow();
+  return latest;
 };
+
+export const relativeDate = date => moment(date).fromNow();
+
+export const calendarDate = date => moment(date).calendar();

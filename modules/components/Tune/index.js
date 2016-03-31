@@ -3,11 +3,12 @@ import Notes from './Notes'
 import React from 'react';
 import SelectLists from '../SelectLists';
 import relativeDate from 'relative-date';
+import sortBy from 'sort-by';
 import { Link } from 'react-router';
 import { addPractice } from '../../actions/tunes';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { latestDate } from '../../utils';
+import { latestDate, calendarDate } from '../../utils';
 
 const Tune = React.createClass({
   propTypes: {
@@ -16,16 +17,28 @@ const Tune = React.createClass({
     })
   },
 
-  handlePractice(tune) {
-    this.props.dispatch(addPractice(tune));
+  handlePractice() {
+    const { id: tuneId } = this.props.routeParams;
+
+    this.props.dispatch(NoteActions.addNote({
+      content: '',
+      tuneId,
+    }));
   },
 
   render() {
+    // check this with onEnter?
+    if (!this.props.user.tunes) {
+      return null;
+    }
+
     const { id: tuneId } = this.props.routeParams;
     const tune = this.props.user.tunes.filter(tune => tune.id == tuneId)[0];
-    const date = latestDate(tune.practiceDates);
-    const { dispatch } = this.props;
-    const noteActionCreators = bindActionCreators(NoteActions, dispatch);
+    let date;
+    if (tune && tune.notes) {
+      date = calendarDate(latestDate(tune.notes.map(note => note.createdDate)));
+    }
+    const noteActionCreators = bindActionCreators(NoteActions, this.props.dispatch);
 
     return (
       <article>
@@ -34,19 +47,20 @@ const Tune = React.createClass({
         <h3>
           {[tune.composer, tune.year].filter(Boolean).join('; ')}
         </h3>
-        {date && <h4>Last Practiced: {date}</h4>}
+        {date != null && <h4>Last Practiced: {date}</h4>}
+
+        <SelectLists tune={tune} />
 
         <button
-          onClick={this.handlePractice.bind(null, tune)}
+          onClick={this.handlePractice}
           type="button"
+	  style={{ marginTop: '2em' }}
         >
           Mark practice
         </button>
 
-        <SelectLists tune={tune} />
-
         <Notes
-	  notes={tune.notes}
+	  notes={tune.notes.sort(sortBy('-createdDate'))}
 	  tuneId={tuneId}
 	  {...noteActionCreators}
 	/>
