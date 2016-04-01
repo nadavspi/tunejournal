@@ -9,7 +9,7 @@ export const updateNote = (payload) => (dispatch, getState) => {
     modifiedDate = moment();
   }
 
-  const { tunes } = getState().user;
+  const { tunes } = getState();
   const tune = tunes.filter(tune => tune.id == payload.tuneId)[0];
   const nextNote = note => ({
     ...note,

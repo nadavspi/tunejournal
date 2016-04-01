@@ -37,7 +37,7 @@ const AddRemove = React.createClass({
 });
 
 const mapStateToProps = state => ({
-  lists: state.user.lists,
+  lists: state.lists,
 });
 
 export default connect(mapStateToProps)(AddRemove);

@@ -8,7 +8,7 @@ export const updateTuneById = (id, payload) => (dispatch, getState) => {
     throw new Error('Missing arguments.');
   }
 
-  const { tunes } = getState().user;
+  const { tunes } = getState();
 
   if (!tunes.filter(tune => tune.id == id).length) {
     throw new Error('Invalid tune id');
@@ -35,7 +35,7 @@ export const addPractice = (tune, date = moment()) => (dispatch) => {
 };
 
 export const randomTune = () => (dispatch, getState) => {
-  const { tunes } = getState().user;
+  const { tunes } = getState();
 
   // Need to be smarter about this:
   // - not the current one

@@ -1,7 +1,7 @@
 import moment from 'moment';
 import sortBy from 'sort-by';
 
-const calendarDate = date => moment(date).calendar();
+export const calendarDate = date => moment(date).calendar();
 
 export const lastDate = tune => {
   if (!tune || !tune.notes || !tune.notes.length) {

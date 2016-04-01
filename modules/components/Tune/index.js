@@ -14,7 +14,8 @@ const Tune = React.createClass({
   propTypes: {
     routeParams: React.PropTypes.shape({
       id: React.PropTypes.string.isRequired,
-    })
+    }),
+    tunes: React.PropTypes.array.isRequired,
   },
 
   handlePractice() {
@@ -27,13 +28,8 @@ const Tune = React.createClass({
   },
 
   render() {
-    // check this with onEnter?
-    if (!this.props.user.tunes) {
-      return null;
-    }
-
     const { id: tuneId } = this.props.routeParams;
-    const tune = this.props.user.tunes.filter(tune => tune.id == tuneId)[0];
+    const tune = this.props.tunes.filter(tune => tune.id == tuneId)[0];
     const date = lastDate(tune);
     const noteActionCreators = bindActionCreators(NoteActions, this.props.dispatch);
 

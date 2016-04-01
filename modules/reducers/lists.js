@@ -1,11 +1,9 @@
 import * as ActionTypes from '../actions/ActionTypes';
 
-export default function user(state = {}, action) {
+export default function lists(state = [], action) {
   switch (action.type) {
     case ActionTypes.LOGIN:
-      return {
-	id: action.payload.id,
-      };
+      return action.payload.lists;
 
     default:
       return state;

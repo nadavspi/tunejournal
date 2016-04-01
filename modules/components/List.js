@@ -9,12 +9,14 @@ const List = React.createClass({
   propTypes: {
     routeParams: React.PropTypes.shape({
       id: React.PropTypes.string.isRequired,
-    })
+    }),
+    tunes: React.PropTypes.array.isRequired,
+    lists: React.PropTypes.array.isRequired,
   },
 
   handleAdd({ id: tuneId }) {
     const { id: listId } = this.props.routeParams;
-    const { tunes } = this.props.user;
+    const { tunes } = this.props;
     const tune = tunes.filter(tune => tune.id == tuneId)[0];
 
     this.props.dispatch(addTuneToList(tune, listId));
@@ -26,7 +28,7 @@ const List = React.createClass({
     }
 
     const { id: listId } = this.props.routeParams;
-    const { lists, tunes: allTunes } = this.props.user;
+    const { lists, tunes: allTunes } = this.props;
     const list = lists.filter(list => list.id == listId)[0];
     const tunes = allTunes.filter(tune => {
       return tune.lists.indexOf(listId) > -1;

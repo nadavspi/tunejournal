@@ -5,7 +5,7 @@ import { updateTuneById } from '../actions/tunes';
 
 const Input = ({ type = 'text', label, value, onChange, name }) => (
   <div>
-    <label htmlFor={name}>Name</label>
+    <label htmlFor={name}>{label}</label>
     <input
       id={name}
       type={type}
@@ -19,13 +19,14 @@ const EditTune = React.createClass({
   propTypes: {
     routeParams: React.PropTypes.shape({
       id: React.PropTypes.string.isRequired,
-    })
+    }),
+    tunes: React.PropTypes.array.isRequired,
   },
 
   getInitialState() {
     const { id } = this.props.routeParams;
 
-    return this.props.user.tunes.filter(tune => tune.id == id)[0];
+    return this.props.tunes.filter(tune => tune.id == id)[0];
   },
 
   goBack() {

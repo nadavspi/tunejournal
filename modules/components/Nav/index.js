@@ -43,8 +43,8 @@ const Nav = React.createClass({
 });
 
 const mapStateToProps = state => ({
-  lists: state.user.lists,
-  tunes: state.user.tunes,
+  lists: state.lists,
+  tunes: state.tunes,
 });
 
 export default connect(mapStateToProps)(Nav);

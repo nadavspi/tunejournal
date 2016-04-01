@@ -8,7 +8,11 @@ import Nav from './Nav';
 
 const App = React.createClass({
   propTypes: {
-    user: React.PropTypes.object.isRequired,
+    appState: React.PropTypes.shape({
+      user: React.PropTypes.object.isRequired,
+      tunes: React.PropTypes.array.isRequired,
+      lists: React.PropTypes.array.isRequired,
+    }).isRequired,
   },
 
   login(payload) {
@@ -16,21 +20,27 @@ const App = React.createClass({
   },
 
   render() {
-    const { user } = this.props;
+    const { user, tunes, lists } = this.props;
 
     return (
       <div>
         <Title render="TuneBook"/>
-	{this.props.user.id ? (
-	  <Nav />
-	) : (
-	   <Login handleLogin={this.login} />
-	)}
+        {this.props.appState.user.id ? (
+           <Nav />
+         ) : (
+           <Login handleLogin={this.login} />
+         )}
 
-        {cloneElement(this.props.children, { user })}
+           {cloneElement(this.props.children, this.props.appState)}
       </div>
     )
   }
 });
 
-export default connect(state => state)(App);
+const mapStateToProps = state => ({
+  appState: {
+    ...state,
+  }
+});
+
+export default connect(mapStateToProps)(App);
