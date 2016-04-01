@@ -8,7 +8,7 @@ import { Link } from 'react-router';
 import { addPractice } from '../../actions/tunes';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { latestDate, calendarDate } from '../../utils';
+import { lastDate } from '../../utils';
 
 const Tune = React.createClass({
   propTypes: {
@@ -34,10 +34,7 @@ const Tune = React.createClass({
 
     const { id: tuneId } = this.props.routeParams;
     const tune = this.props.user.tunes.filter(tune => tune.id == tuneId)[0];
-    let date;
-    if (tune && tune.notes) {
-      date = calendarDate(latestDate(tune.notes.map(note => note.createdDate)));
-    }
+    const date = lastDate(tune);
     const noteActionCreators = bindActionCreators(NoteActions, this.props.dispatch);
 
     return (

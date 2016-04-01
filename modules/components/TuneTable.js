@@ -1,7 +1,7 @@
 import React from 'react';
 import SelectLists from './SelectLists';
 import { Link } from 'react-router';
-import { latestDate } from '../utils';
+import { lastDate } from '../utils';
 
 const Row = ({ tune }) => (
   <tr>
@@ -17,7 +17,7 @@ const Row = ({ tune }) => (
       {tune.year}
     </td>
     <td>
-      {latestDate(tune.practiceDates)}
+      {lastDate(tune)}
     </td>
     <td>
       <SelectLists tune={tune} />

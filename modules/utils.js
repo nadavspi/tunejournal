@@ -1,15 +1,14 @@
 import moment from 'moment';
+import sortBy from 'sort-by';
 
-export const latestDate = (dates) => {
-  if (!dates || !dates.length) {
+const calendarDate = date => moment(date).calendar();
+
+export const lastDate = tune => {
+  if (!tune || !tune.notes || !tune.notes.length) {
     return null;
   }
 
-  const latest = dates.sort((a, b) => moment(a.date).isBefore(b.date) ? -1 : 1)[0];
+  const lastNote = tune.notes.sort(sortBy('-createdDate'));
 
-  return latest;
-};
-
-export const relativeDate = date => moment(date).fromNow();
-
-export const calendarDate = date => moment(date).calendar();
+  return calendarDate(lastNote.createdDate);
+}
