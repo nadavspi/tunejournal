@@ -1,6 +1,5 @@
 import React from 'react';
 import { calendarDate } from '../../utils';
-import AddNote from './AddNote';
 
 const Note = ({ onDelete, note, onChange }) => (
   <li>
