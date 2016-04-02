@@ -7,7 +7,8 @@ export default React.createClass({
 
   getInitialState () {
     return {
-      userId: 'me@nadav.name',
+      email: '',
+      password: '',
     };
   },
 
@@ -19,16 +20,26 @@ export default React.createClass({
   render() {
     return (
       <div>
-	<h2>Login</h2>
-	<form onSubmit={this.handleSubmit}>
-	  <input
-	    type="email"
-	    value={this.state.userId}
-	    onChange={e => this.setState({ userId: e.target.value })}
-	    required
-	  />
-	  <button type="submit">Login</button>
-	</form>
+        <h2>Login</h2>
+        <form onSubmit={this.handleSubmit}>
+	  <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            onChange={e => this.setState({ email: e.target.value })}
+            required
+            type="email"
+            value={this.state.email}
+          />
+	  <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            onChange={e => this.setState({ password: e.target.value })}
+            required
+            type="password"
+            value={this.state.password}
+          />
+          <button type="submit">Login</button>
+        </form>
       </div>
     );
   }

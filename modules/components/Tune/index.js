@@ -52,11 +52,13 @@ const Tune = React.createClass({
           Mark practice
         </button>
 
+	{false && (
         <Notes
 	  notes={tune.notes.sort(sortBy('-createdDate'))}
 	  tuneId={tuneId}
 	  {...noteActionCreators}
 	/>
+	)}
       </article>
     );
   }

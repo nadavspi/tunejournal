@@ -2,8 +2,8 @@ import * as ActionTypes from '../actions/ActionTypes';
 
 export default function tunes(state = [], action) {
   switch (action.type) {
-    case ActionTypes.LOGIN:
-      return action.payload.tunes;
+    case ActionTypes.FETCH_DATA_SUCCESS:
+      return action.payload.user.tunes;
 
     case ActionTypes.TUNE_UPDATE:
       return state.map(tune => {

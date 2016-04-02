@@ -19,19 +19,34 @@ const App = React.createClass({
     this.props.dispatch(userActions.login(payload));
   },
 
+  componentDidMount() {
+    const { auth_token, email } = window.localStorage;
+
+    if (auth_token && email) {
+      this.props.dispatch(
+	userActions.loginSuccess({ auth_token, email }),
+      );
+    }
+  },
+
+  componentDidReceiveProps() {
+    console.log('receive props')
+  },
+
   render() {
     const { user, tunes, lists } = this.props;
 
     return (
       <div>
         <Title render="TuneBook"/>
-        {this.props.appState.user.id ? (
-           <Nav />
+        {this.props.appState.user.auth_token ? (
+           <div>
+             <Nav />
+             {cloneElement(this.props.children, this.props.appState)}
+           </div>
          ) : (
            <Login handleLogin={this.login} />
          )}
-
-           {cloneElement(this.props.children, this.props.appState)}
       </div>
     )
   }

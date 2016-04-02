@@ -14,7 +14,7 @@ const AddRemove = React.createClass({
     const { dispatch, tune } = this.props;
 
     dispatch(updateTuneById(tune.id, {
-      lists: options.map(option => option.id),
+      list_ids: options.map(option => option.id),
     }));
   },
 
@@ -27,7 +27,7 @@ const AddRemove = React.createClass({
         labelKey="name"
         multi={true}
         onChange={this.handleChange}
-        value={tune.lists.join(',')}
+        value={tune.list_ids.join(',')}
         valueKey="id"
         options={lists}
         style={{ maxWidth: '300px' }}

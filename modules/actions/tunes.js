@@ -24,7 +24,7 @@ export const updateTuneById = (id, payload) => (dispatch, getState) => {
 export const addTuneToList = (tune, listId) => (dispatch) => {
   dispatch(updateTuneById(tune.id, {
     // maybe the reducer should do this
-    lists: [...tune.lists, listId],
+    list_ids: [...tune.list_ids, listId],
   }));
 };
 

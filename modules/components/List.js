@@ -31,12 +31,12 @@ const List = React.createClass({
     const { lists, tunes: allTunes } = this.props;
     const list = lists.filter(list => list.id == listId)[0];
     const tunes = allTunes.filter(tune => {
-      return tune.lists.indexOf(listId) > -1;
+      return tune.list_ids.indexOf(listId) > -1;
     });
 
     // Tunes not in this list
     const otherTunes = allTunes.filter(tune => {
-      return tune.lists.indexOf(listId) === -1;
+      return tune.list_ids.indexOf(listId) === -1;
     });
 
     return (

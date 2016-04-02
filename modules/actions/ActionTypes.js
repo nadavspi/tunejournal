@@ -1,6 +1,9 @@
-export const LOGIN = 'LOGIN';
-export const NOTE_UPDATE = 'NOTE_UPDATE';
-export const NOTE_DELETE = 'NOTE_DELETE';
+export const FETCH_DATA = 'FETCH_DATA';
+export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const NOTE_ADD = 'NOTE_ADD';
+export const NOTE_DELETE = 'NOTE_DELETE';
+export const NOTE_UPDATE = 'NOTE_UPDATE';
 export const TUNE_RANDOM = 'TUNE_RANDOM';
 export const TUNE_UPDATE = 'TUNE_UPDATE';
