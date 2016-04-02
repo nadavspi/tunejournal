@@ -12,25 +12,22 @@ const store = configureStore();
 function getApp(req, res, requestCallback) {
   // here is your chance to do things like get an auth token and generate
   // your route config w/ request aware `onEnter` hooks, etc.
-  store.dispatch(userActions.login({ userId: 'me@nadav.name' }));
 
-  setTimeout(() => {
-    requestCallback(null, {
-      routes: routes,
-      render(routerProps, renderCallback) {
-        // here is your chance to load up data before rendering and pass it to
-        // your top-level components
-        renderCallback(null, {
-          renderDocument: (props) => <Document initialState={store.getState()} {...props} />,
-          renderApp: (props) => (
-            <Provider store={store}>
-              <RouterContext {...props}/>
-            </Provider>
-          )
-        })
-      }
-    })
-  }, 100);
+  requestCallback(null, {
+    routes: routes,
+    render(routerProps, renderCallback) {
+      // here is your chance to load up data before rendering and pass it to
+      // your top-level components
+      renderCallback(null, {
+        renderDocument: (props) => <Document initialState={store.getState()} {...props} />,
+        renderApp: (props) => (
+          <Provider store={store}>
+            <RouterContext {...props}/>
+          </Provider>
+        )
+      })
+    }
+  });
 }
 
 createServer(getApp).start()
