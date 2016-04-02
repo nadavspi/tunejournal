@@ -4,7 +4,7 @@ import TuneTable from './TuneTable';
 
 export default React.createClass({
   propTypes: {
-    tunes: React.PropTypes.array.isRequired,
+    tunes: React.PropTypes.array,
   },
 
   render() {
